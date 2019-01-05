@@ -1,3 +1,5 @@
+from species import Bacteria
+
 class Population():
     '''Abstract class'''
 
@@ -33,7 +35,7 @@ class Population():
 
 class AsexualPopulation(Population):
     '''Concrete Class'''
-    def __init__ (self, world, species, initial_pop_size = 100):
+    def __init__ (self, world, species = Bacteria, initial_pop_size = 100):
         self.world = world
         self.species = species
         self.initial_pop_size = initial_pop_size
@@ -52,6 +54,15 @@ class AsexualPopulation(Population):
                     qty += 1
             genes.append(qty)
         self.genes_matrix = genes
+
+    def get_genes_matrix(self):
+        return self.genes_matrix
+
+    def get_original_genes(self):
+        original_genes = list()
+        for individual in self.get_pop():
+            genes.append(individual.get_genotype())
+        return original_genes
 
     def birth_wave(self):
         new_pop = list(self.get_pop())
