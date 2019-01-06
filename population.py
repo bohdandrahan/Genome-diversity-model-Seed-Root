@@ -6,6 +6,15 @@ from species import Bacteria
 
 class Population():
     '''Abstract class'''
+    def __init__ (self, world, species, initial_pop_size = 100, birth_prob = 0.05):
+        self.world = world
+        self.species = species
+        self.initial_pop_size = initial_pop_size
+        self.pop = self.creat_first_gen()
+        self.birth_prob = birth_prob
+        self.update_death_prob()
+        self.update_genes()
+
 
     def get_pop(self):
         return self.pop
@@ -39,14 +48,8 @@ class Population():
 
 class AsexualPopulation(Population):
     '''Concrete Class'''
-    def __init__ (self, world, species = Bacteria, initial_pop_size = 100, birth_prob = 0.05):
-        self.world = world
-        self.species = species
-        self.initial_pop_size = initial_pop_size
-        self.pop = self.creat_first_gen()
-        self.birth_prob = birth_prob
-        self.update_death_prob()
 
+    def update_genes(self):
         self.update_genes_matrix()
 
     def update_genes_matrix(self):
@@ -77,4 +80,9 @@ class AsexualPopulation(Population):
 
         self.pop = new_pop
         self.update_death_prob()
+
+class SexualPopulation(Population):
+    '''Concrete Class'''
+    def update_genes(self):
+        pass
 

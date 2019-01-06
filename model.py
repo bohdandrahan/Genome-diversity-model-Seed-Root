@@ -4,9 +4,10 @@ import numpy as np
 
 class Model():
     '''Abstract class'''
-    def __init__(self, world_type, population_type, iterations = 100, initial_pop_size = 200):
+    def __init__(self, world_type, population_type, species, iterations = 100, initial_pop_size = 200):
         self.world = world_type()
-        self.population = population_type(self.world, initial_pop_size = initial_pop_size)
+        self.species = species
+        self.population = population_type(self.world, species, initial_pop_size = initial_pop_size)
         self.iterations = iterations
 
 class ModelAsexualPopulation(Model):
@@ -35,11 +36,11 @@ class ModelAsexualPopulation(Model):
     def plot_pop(self):
         pop_size, original_genes, genes = self.get_population_data()
         x = range(len(pop_size))
-        chart = pygal.XY(style = DarkStyle, legend_at_bottom=True)
-        chart.title = str('Genome diversity in asexual population over ' + str(len(pop_size) - 1) + ' generation')
+        chart = pygal.XY(style = DarkStyle, legend_at_bottom=True, show_dots = False)
+        chart.title = str('Genome diversity in asexual population over ' + str(len(pop_size) - 1) + ' generation (Autogamy)')
         chart.add('Population size', list(zip(x, pop_size)))
         chart.add('Diversity', list(zip(x, original_genes)))
-        chart.render_to_file('pop_chart.svg')
+        chart.render_to_file('Autogamy_1.svg')
 
         genes = np.array(genes).T
 
@@ -50,7 +51,7 @@ class ModelAsexualPopulation(Model):
 
         for x2_, genes_ in zip(x2, genes):
             bar_chart.add(x2_, genes_)
-        bar_chart.render_to_file('gen_bar_chart.svg')
+        bar_chart.render_to_file('Autogamy_2.svg')
 
     def get_x_lables(self, pop_size):
         x_labels = list()

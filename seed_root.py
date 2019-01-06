@@ -8,5 +8,5 @@ from population import AsexualPopulation
 from species import Bacteria
 from model import ModelAsexualPopulation as md 
 
-m = md(World, AsexualPopulation, 200, 50)
-m.plot_pop()
+model = md(World, AsexualPopulation, Bacteria, 500, 50)
+model.plot_pop()
