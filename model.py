@@ -44,7 +44,7 @@ class ModelAsexualPopulation(Model):
         genes = np.array(genes).T
 
         x2 = map(str, range(len(genes)))
-        bar_chart = pygal.StackedBar(style = DarkStyle, legend_at_bottom=True)
+        bar_chart = pygal.StackedLine(fill = True, show_dots = False, style = DarkStyle, legend_at_bottom=True)
         bar_chart.title = 'Genome diversity in asexual population over ' + str(len(pop_size) - 1) + ' generations (Autogamy)'
 
         for x2_, genes_ in zip(x2, genes):
