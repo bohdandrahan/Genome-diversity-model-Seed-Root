@@ -35,7 +35,7 @@ class ModelAsexualPopulation(Model):
     def plot_pop(self):
         pop_size, original_genes, genes = self.get_population_data()
         x = range(len(pop_size))
-        chart = pygal.XY(style = DarkStyle)
+        chart = pygal.XY(style = DarkStyle, legend_at_bottom=True)
         chart.title = str('Genome diversity in asexual population over ' + str(len(pop_size) - 1) + ' generation')
         chart.add('Population size', list(zip(x, pop_size)))
         chart.add('Diversity', list(zip(x, original_genes)))
