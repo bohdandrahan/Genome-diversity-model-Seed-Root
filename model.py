@@ -4,10 +4,10 @@ import numpy as np
 
 class Model():
     '''Abstract class'''
-    def __init__(self, world_type, population_type, species, iterations = 100, initial_pop_size = 200):
+    def __init__(self, world_type, population_type, species, iterations = 100, initial_pop_size = 200, birth_prob = 0.05):
         self.world = world_type()
         self.species = species
-        self.population = population_type(self.world, species, initial_pop_size = initial_pop_size)
+        self.population = population_type(self.world, species, initial_pop_size, birth_prob)
         self.iterations = iterations
 
 class ModelAsexualPopulation(Model):
@@ -36,8 +36,9 @@ class ModelAsexualPopulation(Model):
     def plot_pop(self):
         pop_size, original_genes, genes = self.get_population_data()
         x = range(len(pop_size))
-        chart = pygal.XY(style = DarkStyle, legend_at_bottom=True, show_dots = False)
-        chart.title = str('Genome diversity in asexual population over ' + str(len(pop_size) - 1) + ' generation (Autogamy)')
+        chart = pygal.XY(style = DarkStyle, legend_at_bottom=True, show_dots = False, fill=True)
+        chart.title = str('Genome diversity in asexual population over ' + str(len(pop_size) - 1) +
+                         ' generations (Autogamy). \n Quantity of original genes from the first generation in population ')
         chart.add('Population size', list(zip(x, pop_size)))
         chart.add('Diversity', list(zip(x, original_genes)))
         chart.render_to_file('Autogamy_1.svg')
