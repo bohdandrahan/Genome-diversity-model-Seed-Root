@@ -1,8 +1,6 @@
 import random
 import numpy as np
-
-
-from species import Bacteria
+from genotype import Genotype
 
 class Population():
     '''Abstract class'''
@@ -10,11 +8,10 @@ class Population():
         self.world = world
         self.species = species
         self.initial_pop_size = initial_pop_size
-        self.pop = self.creat_first_gen()
+        self.pop = self.create_first_gen()
         self.birth_prob = birth_prob
         self.update_death_prob()
         self.update_genes()
-
 
     def get_pop(self):
         return self.pop
@@ -31,7 +28,7 @@ class Population():
     def update_death_prob(self):
         self.death_prob = 1 - (self.world.abs_max - len(self.pop))/float(self.world.abs_max)
 
-    def creat_first_gen(self):
+    def create_first_gen(self):
         pop = list()
         for each in range(self.get_initial_pop_size()):
             pop.append(self.species(each))
@@ -48,7 +45,6 @@ class Population():
 
 class AsexualPopulation(Population):
     '''Concrete Class'''
-
     def update_genes(self):
         self.update_genes_matrix()
 
@@ -86,7 +82,7 @@ class SexualPopulation(Population):
         self.world = world
         self.species = species
         self.initial_pop_size = initial_pop_size
-        self.pop = self.creat_first_gen()
+        self.pop = self.create_first_gen()
         self.birth_prob = birth_prob
         self.long_term = long_term
         self.monogamy = monogamy
@@ -97,8 +93,16 @@ class SexualPopulation(Population):
         self.couples = list()
         self.update_couples()
 
+    def create_first_gen(self):
+        pop = list()
+        for each in range(self.get_initial_pop_size()):
+            genotype = Genotype()
+            genotype.create_initial_genotype(each)
+            pop.append(self.species(genotype))
+        return pop
+
     def update_genes(self):
-        pass
+        pass #TODO
 
     def update_couples(self):
         if self.long_term:
@@ -144,10 +148,15 @@ class SexualPopulation(Population):
         new_pop = list(self.get_pop())
         for couple in self.get_couples():
             if random.random() < self.get_birth_prob():
-                new_born = self.give_birth(couple)
+                new_bort = self.give_birth(couple)
                 new_pop.append(new_born)
         self.pop = new_pop
         self.update_death_prob()
+
+    def give_birth(couple):
+        new_born_genotype = Genotype()
+        new_born_genotype.mix_parents_dna(couple)
+        new_born = self.species(new_born_genotype)
 
     def get_males(self, pop):
         males = list()
