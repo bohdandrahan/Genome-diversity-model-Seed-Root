@@ -78,7 +78,7 @@ class AsexualPopulation(Population):
         self.update_death_prob()
 
 class SexualPopulation(Population):
-    def __init__ (self, world, species, initial_pop_size, birth_prob, long_term = True, monogamy = True):
+    def __init__ (self, world, species, initial_pop_size, birth_prob, long_term = False, monogamy = False):
         self.world = world
         self.species = species
         self.initial_pop_size = initial_pop_size
@@ -120,18 +120,21 @@ class SexualPopulation(Population):
         self.couples += self.find_new_couples(open_to_mating)
 
     def get_open_to_mating(self):
-        open_to_mating = list(self.get_pop)
+        married = list()
         for couple in self.get_couples():
             for partner in couple:
-                open_to_mating.remove(partner)
+                married.append(partner)
+        open_to_mating = list(set(self.get_pop()) - set(married))
         return open_to_mating
 
     def find_new_couples(self, open_to_mating):
         new_couples = list()
-        singe_males = get_males(open_to_mating)
-        for female in get_females(open_to_mating):
-            male = random.choise(singe_males)
-            couples.append((female, male))
+        singe_males = self.get_males(open_to_mating)
+        for female in self.get_females(open_to_mating):
+            if len(singe_males) == 0:
+                break
+            male = random.choice(singe_males)
+            new_couples.append((female, male))
             if self.monogamy:
                 singe_males.remove(male)
         return new_couples
@@ -139,34 +142,41 @@ class SexualPopulation(Population):
     def remove_widows(self):
         updated_couples = self.get_couples()
         for couple in self.get_couples():
+            still_together = True
             for partner in couple:
                 if partner not in self.get_pop():
-                    updated_couples.remove(couple)
+                    still_together = False
+
+            if not still_together:
+                updated_couples.remove(couple)
+
         self.couples = updated_couples
 
     def birth_wave(self):
         new_pop = list(self.get_pop())
         for couple in self.get_couples():
             if random.random() < self.get_birth_prob():
-                new_bort = self.give_birth(couple)
+                new_born = self.give_birth(couple)
                 new_pop.append(new_born)
         self.pop = new_pop
         self.update_death_prob()
 
-    def give_birth(couple):
+    def give_birth(self, couple):
         new_born_genotype = Genotype()
         new_born_genotype.mix_parents_dna(couple)
         new_born = self.species(new_born_genotype)
+        return new_born
 
     def get_males(self, pop):
         males = list()
-        for individual in pop():
+        for individual in pop:
             if individual.is_male():
                 males.append(individual)
         return males
 
     def get_females(self, pop):
         females = list(set(pop) - set(self.get_males(pop)))
+        return females
 
     def get_couples(self):
         return self.couples
