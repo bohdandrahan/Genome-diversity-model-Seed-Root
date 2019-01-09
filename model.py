@@ -87,10 +87,10 @@ class ModelSexualPopulaiton(Model):
         chart1.add('Population size', list(zip(x, pop_size)))
         chart1.render_to_file('charts/Sexual_reproduction_1.svg')
 
-        rdm_ind_data = self.get_genes_data(rdm_individuals)
+        #CHART 2
+        rdm_ind_data = sorted(self.get_genes_data(rdm_individuals))
         genes = rdm_ind_data
 
-        #CHART 2
         x2 = map(str, range(len(genes)))
         chart2 = pygal.StackedBar(style = DarkStyle, legend_at_bottom=True, truncate_label=-1)
         chart2.title = ('Genome of a random individual from the population over \n ' +
