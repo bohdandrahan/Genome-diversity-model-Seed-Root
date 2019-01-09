@@ -4,6 +4,7 @@ class Genotype():
         self.genotype = [(dna_name, dna_part)]
 
     def get_genotype(self):
+        '''self.genotype - list of each (dna_name, dna_part)''' 
         return self.genotype
 
     def mix_parents_dna(self, couple):
