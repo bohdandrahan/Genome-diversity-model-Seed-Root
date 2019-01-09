@@ -1,12 +1,14 @@
 ### Genome diversity model "SEED ROOT":
 
-A simulation of genome diversity in different kinds of population including asexual and sexual reproduction.
+A simulation of genome diversity in different kinds of populations including asexual and sexual reproduction.
 
-##Asexual reproduction
+This model simulates behavior of population in closed environment. 
+
+##Asexual reproduction.
 ![Alt text](.charts/Autogamy_1.svg)
 ![Alt text](.charts/Autogamy_2.svg)
 
-##Sexual reproduction
+##Sexual reproduction.
 ![Alt text](.charts/Sexual_reproduction_2.svg)
 
 ## Increasing of homogeneity of populaiton in closed environment over time.
