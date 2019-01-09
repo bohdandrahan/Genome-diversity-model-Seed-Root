@@ -13,9 +13,9 @@ This model simulates behavior of population in closed environment.
 
 ## Increasing of homogeneity of populaiton in closed environment over time.
 ![Alt text](charts/Genes_0.svg)
-![Alt text](.charts/Genes_50.svg)
-![Alt text](.charts/Genes_100.svg)
-![Alt text](.charts/Genes_150.svg)
-![Alt text](.charts/Genes_200.svg)
+![Alt text](charts/Genes_50.svg)
+![Alt text](charts/Genes_100.svg)
+![Alt text](charts/Genes_150.svg)
+![Alt text](charts/Genes_200.svg)
 
 
