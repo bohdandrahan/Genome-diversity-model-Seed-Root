@@ -44,7 +44,7 @@ class ModelAsexualPopulation(Model):
                          ' generations. \n Quantity of original genes from the first generation in population ')
         chart1.add('Population size', list(zip(x, pop_size)))
         chart1.add('Diversity', list(zip(x, original_genes)))
-        chart1.render_to_file('Autogamy_1.svg')
+        chart1.render_to_file('charts/Autogamy_1.svg')
 
         genes = np.array(genes).T
 
@@ -55,7 +55,7 @@ class ModelAsexualPopulation(Model):
 
         for x2_, genes_ in zip(x2, genes):
             chart2.add('"'+str(x2_)+'"', genes_)
-        chart2.render_to_file('Autogamy_2.svg')
+        chart2.render_to_file('charts/Autogamy_2.svg')
 
 
 class ModelSexualPopulaiton(Model):
@@ -85,7 +85,7 @@ class ModelSexualPopulaiton(Model):
         chart1.title = str('Population size over  ' + str(len(pop_size)) +
                          ' generations.')
         chart1.add('Population size', list(zip(x, pop_size)))
-        chart1.render_to_file('Sexual_reproduction_1.svg')
+        chart1.render_to_file('charts/Sexual_reproduction_1.svg')
 
         rdm_ind_data = self.get_genes_data(rdm_individuals)
         genes = rdm_ind_data
@@ -100,7 +100,7 @@ class ModelSexualPopulaiton(Model):
 
         for x2_, genes_ in genes:
             chart2.add(x2_, genes_)
-        chart2.render_to_file('Sexual_reproduction_2.svg')
+        chart2.render_to_file('charts/Sexual_reproduction_2.svg')
 
         #CHART 3
 
@@ -110,14 +110,13 @@ class ModelSexualPopulaiton(Model):
 
                 x2 = map(str, range(len(genes)))
                 chart2 = pygal.StackedBar(style = DarkStyle, legend_at_bottom=True, truncate_label=-1)
-                chart2.title = ('Genome of a random individual from the population over \n ' +
-                                str(len(pop_size)) + ' generations. \n Monogamy: ' + str(self.population.monogamy) +
+                chart2.title = ('Gentoype of each individual of generation #' +
+                                str(populations.index(population)) + '. \n Monogamy: ' + str(self.population.monogamy) +
                                 ',    Long term: ' + str(self.population.long_term))
-                # chart2.x_labels = self.get_x_lables(population)
 
                 for x2_, genes_ in genes:
                     chart2.add(x2_, genes_)
-                chart2.render_to_file('Sexual_reproduction_' +str(populations.index(population))+ '.svg')
+                chart2.render_to_file('charts/Genes_' +str(populations.index(population))+ '.svg')
 
     def get_genes_data(self, individuals):
         #Refactor this

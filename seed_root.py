@@ -11,8 +11,6 @@ from species import Giraffe
 from model import ModelAsexualPopulation
 from model import ModelSexualPopulaiton 
 
-
-
 # model = ModelAsexualPopulation(World, AsexualPopulation, Bacteria, 500, 50)
 # model.plot_pop()
 
