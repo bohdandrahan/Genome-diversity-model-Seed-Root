@@ -106,7 +106,7 @@ class ModelSexualPopulaiton(Model):
 
         for population in populations:
             if populations.index(population) % 50 == 0:
-                genes = self.get_genes_data(population)
+                genes = sorted(self.get_genes_data(population))
 
                 x2 = map(str, range(len(genes)))
                 chart2 = pygal.StackedBar(style = DarkStyle, legend_at_bottom=True, truncate_label=-1)
