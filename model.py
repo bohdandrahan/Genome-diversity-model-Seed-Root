@@ -40,7 +40,7 @@ class ModelAsexualPopulation(Model):
         pop_size, original_genes, genes = self.get_population_data()
         x = range(len(pop_size))
         chart1 = pygal.XY(style = DarkStyle, legend_at_bottom=True, show_dots = False, fill=True)
-        chart1.title = str('Genome diversity in population with asexual reproduction over ' + str(len(pop_size) - 1) +
+        chart1.title = str('Genome diversity in population with asexual reproduction over ' + str(len(pop_size)) +
                          ' generations. \n Quantity of original genes from the first generation in population ')
         chart1.add('Population size', list(zip(x, pop_size)))
         chart1.add('Diversity', list(zip(x, original_genes)))
@@ -50,7 +50,7 @@ class ModelAsexualPopulation(Model):
 
         x2 = map(str, range(len(genes)))
         chart2 = pygal.StackedLine(fill = True, show_dots = False, style = DarkStyle, legend_at_bottom=True, truncate_label=-1)
-        chart2.title = 'Genome diversity in population with asexual reproduction \n over ' + str(len(pop_size) - 1) + ' generations'
+        chart2.title = 'Genome diversity in population with asexual reproduction \n over ' + str(len(pop_size)) + ' generations'
         chart2.x_labels = self.get_x_lables(pop_size)
 
         for x2_, genes_ in zip(x2, genes):
@@ -88,8 +88,7 @@ class ModelSexualPopulaiton(Model):
         chart1.render_to_file('charts/Sexual_reproduction_1.svg')
 
         #CHART 2
-        rdm_ind_data = sorted(self.get_genes_data(rdm_individuals))
-        genes = rdm_ind_data
+        genes = sorted(self.get_genes_data(rdm_individuals))
 
         x2 = map(str, range(len(genes)))
         chart2 = pygal.StackedBar(style = DarkStyle, legend_at_bottom=True, truncate_label=-1)

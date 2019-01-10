@@ -84,8 +84,8 @@ class SexualPopulation(Population):
         self.initial_pop_size = initial_pop_size
         self.pop = self.create_first_gen()
         self.birth_prob = birth_prob
-        self.long_term = long_term
-        self.monogamy = monogamy
+        self.long_term = long_term #Till Death Do Us Part
+        self.monogamy = monogamy 
 
         self.update_death_prob()
         self.update_genes()

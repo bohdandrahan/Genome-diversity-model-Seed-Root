@@ -9,6 +9,7 @@ This model simulates behavior of population in closed environment.
 ![Alt text](charts/Autogamy_2.svg)
 
 ## Sexual reproduction.
+![Alt text](charts/Sexual_reproduction_1.svg)
 ![Alt text](charts/Sexual_reproduction_2.svg)
 
 ## Increasing of homogeneity of populaiton in closed environment over time.
