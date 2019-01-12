@@ -17,7 +17,7 @@ from model import ModelSexualPopulaiton
 species = Giraffe
 population = SexualPopulation
 iterations = 250
-initial_pop = 10
+initial_pop = 50
 birth_prob = 0.1
 model = ModelSexualPopulaiton(World, population, species, iterations, initial_pop, birth_prob)
 model.plot_pop()
