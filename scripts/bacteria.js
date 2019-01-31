@@ -1,6 +1,6 @@
 class Bacteria extends Animal{
 
-  setMaxSpeed(maxspeed = random(2)){
+  setMaxSpeed(maxspeed = random(10)){
     this.maxspeed = maxspeed 
   }
   setNutritionValues(values = []){
@@ -9,6 +9,10 @@ class Bacteria extends Animal{
   setDnaLen(dnaLen = 0){
     this.dnaLen = dnaLen;
   }
+  setMaxForce(maxforce = 0.5) {
+    this.maxforce = maxforce
+  }
+
   setHealthDrop(hD = 0){
     this.healthDrop = hD
   }
@@ -22,7 +26,7 @@ class Bacteria extends Animal{
     push();
     translate(this.position.x, this.position.y);
     colorMode(HSB);
-    fill(this.clr%355, 95, 95);
+    fill(this.clr, 95, 95);
     noStroke();
     ellipse(0,0, 20);
     pop();

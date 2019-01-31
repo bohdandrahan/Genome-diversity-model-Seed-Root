@@ -5,24 +5,39 @@ let groups;
 let height;
 let width;
 
-function setup() {
-  height = 0.95 * windowHeight;
-  width = 0.95 * windowWidth;
-  let canvas = createCanvas(width, height);
-  canvas.parent('sketch-holder')
+//gui
+let gui;
+//dynamic parameters
+var mutationRate = 2;
 
-  groups = new Groups([[Bacteria, 100]]);
+function setup() {
+	height = 0.95 * windowHeight;
+	width = 0.95 * windowWidth;
+	let canvas = createCanvas(width, height);
+	canvas.parent('sketch-holder')
+
+	groups = new Groups([
+		[Bacteria, 1]
+	]);
+
+	gui = createGui('Parameters');
+	colorMode(HSB);
+	sliderRange(0, 10, 1);
+	gui.addGlobals('mutationRate');
+	colorMode(RGB);
+
 }
 
 function draw() {
-  background(77, 77, 77);
-  groups.behave();
-  groups.update();
-  groups.display();
+	background(77, 77, 77);
+	groups.behave();
+	groups.update();
+	groups.display();
 
 }
+
 function windowResized() {
-  width = 0.95 * windowWidth;
-  height = 0.95 * windowHeight
-  resizeCanvas(width, height);
+	width = 0.95 * windowWidth;
+	height = 0.95 * windowHeight
+	resizeCanvas(width, height);
 }

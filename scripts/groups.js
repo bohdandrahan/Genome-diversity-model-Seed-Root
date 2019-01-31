@@ -9,14 +9,13 @@ class Groups {
         let clr = map(i, 0, name_qty[1], 0, 355)
         this.addNewAnimal(this.animals[index], name_qty[0], clr)
       }
-    this.birthProb = 0.05;
+    this.birthProb = 0.1;
     })
   }
   getDeathProb(){
     return 1 - (5000 - this.animals[0].length)/5000
   }
   addNewAnimal(group, name, clr, x = random(width), y = random(height)){
-    console.log(x,width)
     group.push(new name(x,y, null, clr));
   }
 
@@ -25,7 +24,6 @@ class Groups {
   }
 
   behave(){
-    //worms
     this.animals[0].forEach((bacteria) => {
       bacteria.behavior([], [])
     });
