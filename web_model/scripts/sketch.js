@@ -7,24 +7,34 @@ let width;
 
 //gui
 let gui;
+let blockClick = false;
 //dynamic parameters
 var mutationRate = 2;
 var fertility = 0.1;
 var carryingCapacity = 5000
 
 function mousePressed() {
-	mouseDragged();
+	if (!mouseOnPanel()) {
+		mouseDragged();
+	} else {
+		blockClick = true
+	}
+}
+
+function mouseReleased() {
+	blockClick = false;
 }
 
 function mouseDragged() {
-	newAnimal = new Bacteria(mouseX, mouseY, null, random(360))
-	groups.addAnimal(groups.animals[0], newAnimal)
+	if (!blockClick) {
+		newAnimal = new Bacteria(mouseX, mouseY, null, random(360))
+		groups.addAnimal(groups.animals[0], newAnimal)
+	}
 }
 
-
 function setup() {
-	height = 0.95 * windowHeight;
-	width = 0.95 * windowWidth;
+	height = windowHeight;
+	width = windowWidth;
 	let canvas = createCanvas(width, height);
 	canvas.parent('sketch-holder')
 
@@ -40,17 +50,27 @@ function setup() {
 	gui.addGlobals('fertility');
 	sliderRange(1, 10000, 1);
 	gui.addGlobals('carryingCapacity');
-
 	colorMode(RGB);
-
 }
+
+function mouseOnPanel() {
+	if (mouseX > gui.prototype._panel.offsetLeft && mouseY < gui.prototype._panel.offsetLeft + gui.prototype._panel.clientWidth) {
+		if (mouseY > gui.prototype._panel.offsetTop && mouseY < gui.prototype._panel.offsetTop + gui.prototype._panel.clientHeight) {
+			return true;
+		} else {
+			return false
+		}
+	} else {
+		return false
+	}
+}
+
 
 function draw() {
 	background(77, 77, 77);
 	groups.behave();
 	groups.update();
 	groups.display();
-
 }
 
 function windowResized() {
