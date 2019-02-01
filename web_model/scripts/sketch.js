@@ -9,6 +9,18 @@ let width;
 let gui;
 //dynamic parameters
 var mutationRate = 2;
+var fertility = 0.1;
+var carryingCapacity = 5000
+
+function mousePressed() {
+	mouseDragged();
+}
+
+function mouseDragged() {
+	newAnimal = new Bacteria(mouseX, mouseY, null, random(360))
+	groups.addAnimal(groups.animals[0], newAnimal)
+}
+
 
 function setup() {
 	height = 0.95 * windowHeight;
@@ -22,8 +34,13 @@ function setup() {
 
 	gui = createGui('Parameters');
 	colorMode(HSB);
-	sliderRange(0, 10, 1);
+	sliderRange(0, 30, 1);
 	gui.addGlobals('mutationRate');
+	sliderRange(0, 0.3, 0.001);
+	gui.addGlobals('fertility');
+	sliderRange(1, 10000, 1);
+	gui.addGlobals('carryingCapacity');
+
 	colorMode(RGB);
 
 }
