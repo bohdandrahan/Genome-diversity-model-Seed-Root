@@ -39,7 +39,7 @@ function setup() {
 	canvas.parent('sketch-holder')
 
 	groups = new Groups([
-		[Bacteria, 1]
+		[Bacteria, 50]
 	]);
 
 	gui = createGui('Parameters');

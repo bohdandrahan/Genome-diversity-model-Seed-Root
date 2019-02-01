@@ -1,8 +1,13 @@
 ### Genome diversity model "SEED ROOT":
 
+🔵🔴🔵
+As part of the project, interactive behavior simulation of Bacteria.
+[Try it out here!](https://bohdandrahan.github.io/Genome-diversity-model-Seed-Root/)
+
+
 A simulation of genome diversity in different kinds of populations including asexual and sexual reproduction.
 
-This model simulates behavior of population in closed environment. 
+This model simulates behavior of population in closed environment.
 
 ## Asexual reproduction.
 ![Alt text](charts/Autogamy_1.svg)
@@ -18,5 +23,3 @@ This model simulates behavior of population in closed environment.
 ![Alt text](charts/Genes_100.svg)
 ![Alt text](charts/Genes_150.svg)
 ![Alt text](charts/Genes_200.svg)
-
-
