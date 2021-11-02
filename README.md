@@ -8,6 +8,7 @@ As part of the project, interactive behavior simulation of Bacteria.
 A simulation of genome diversity in different kinds of populations including asexual and sexual reproduction.
 
 This model simulates behavior of population in closed environment.
+Envierment is completely random wich means that chances of death of any given two specimens are equal.
 
 ## Asexual reproduction.
 ![Alt text](charts/Autogamy_1.svg)
